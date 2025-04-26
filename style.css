@@ -1,0 +1,185 @@
+
+
+/*
+ * author: Nadeem Elahi
+ * nadeem.elahi@gmail.com
+ * nad@3deem.com
+ * license: gpl v3
+ */
+
+/* fullscreen */
+html , 
+body , 
+#fullscreen { 
+	height: 100%; 
+}
+
+body , 
+#fullscreen > div > div > h1 { 
+	margin: 0; 
+}
+
+#scrollable { background-color: #aff ; }
+#scrollable > div { padding: 10px; }
+/* ends fullscreen */
+
+canvas { display : block; }
+
+/* button */
+.btn {
+	border: none;
+	color: #22f;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	cursor: pointer;
+}
+
+/* overlay , fso - fullscreen overlay */
+/* <div id="fullscreen">
+ * 	<div>
+ *    		<div id="overlay"></div>
+ *    		<div id="canvasDiv">
+ *    			<canvas id="cnv">
+ *    		</div>
+ *     -- parent , two children , and 
+ *     -- one grand child(canvas#cnv)
+ *     -- all 100% width and height
+ *     -- second child namely canvasDiv 
+ *     -- must be position: absolute
+ *     -- with a lower z-index, 
+ *     -- so it slips underneath
+ */
+
+
+/* parent , first child */
+#fullscreen > div , #overlay { position: relative ; }
+/* second , third child */
+#canvasDiv , #sidebarDiv , #overlay > div { position: absolute; }
+
+/* parent */
+#fullscreen > div { z-index: 10 ; }
+
+/* first child - sitting below second child #canvasDiv */
+#overlay { z-index: 20 ; }
+
+/* absolute inside #fullscreen > div */
+
+/* grand child */
+#overlay > div { z-index: 10; }
+
+/* second child */
+#canvasDiv { z-index: 10 ; }
+
+/* third child */
+#sidebarDiv { z-index: 30 ; }
+
+
+#fullscreen > div ,
+#overlay , 
+#canvasDiv ,
+canvas#cnv ,
+#sidebarDiv {
+	width: 100% ; height: 100% ;
+	margin: 0; padding: 0;
+
+	box-sizing: border-box ;
+
+	top: 0 ; left: 0 ;
+}
+
+
+/* 
+ * top 	  -left , middle , right
+ * middle
+ * bottom
+*/ 
+
+#overlay > div {
+	background-color: rgba( 255 , 255 , 255 , 0.5 ) ;
+}
+/* top */
+#overlay > div#otl { /* top left */
+	top: 0; left: 0;
+}
+#overlay > div#otm { /* top middle */
+	top: 0; left: 50%;
+	transform:translate( -50% , 0 );
+	-ms-transform:translate( -50% , 0 );
+}
+#overlay > div#otr { /* top right */
+	top: 0; right: 0;
+}
+
+/* middle */
+#overlay > div#oml { /* middle left */
+	top: 50%; left: 0;
+	transform:translate( 0 , -50% );
+	-ms-transform:translate( 0 , -50% );
+}
+#overlay > div#omm { /* middle middle */
+	top: 50%; left: 50%;
+	transform:translate( -50% , -50% );
+	-ms-transform:translate( -50% , -50% );
+}
+#overlay > div#omr { /* middle right */
+	top: 50%; right: 0;
+	transform:translate( 0 , -50% );
+	-ms-transform:translate( 0 , -50% );
+}
+
+/* bottom */
+#overlay > div#obl { /* bottom left */
+	bottom: 0; left: 0;
+}
+#overlay > div#obm { /* bottom middle */
+	bottom: 0; left: 50%;
+	transform:translate( -50% , 0 );
+	-ms-transform:translate( -50% , 0 );
+}
+#overlay > div#obr { /* bottom right */
+	bottom: 0; right: 0;
+}
+
+/* toggleSidebar sidebar button show/hide button */
+
+#toggleSidebarDiv {
+	padding: 2px;
+}
+#toggleSidebar { }
+
+/* 
+ * child of #sidebarDiv
+ * set to position: absolute; 
+ * top: 0 ; left: 0 ;
+ */
+
+#sidebarDiv {
+	/* so we do not have an empty 
+	 * and so invisible div
+	 * sitting on top of our 
+	 * toggleSidebar button
+	 * making it impossible to
+	 * click
+	 */
+	width: 0; height: 0;
+}
+#sidebar {
+	box-sizing: border-box;
+	position: relative;
+	z-index: 10 ; 
+	top: 0 ; 
+	left: -300px ;
+	transition: left 1s;
+	width: 300px;
+
+	padding: 2px;
+	background: green;
+}
+
+#closeSidebarDiv {
+	text-align: right; 
+}
+
+#closeSidebar {  }
